@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsyncIntro
@@ -34,7 +35,8 @@ namespace AsyncIntro
         private async void DisplayWebSiteLength(object sender, EventArgs e)
         {
             label.Text = "Fetching...";
-            string text = await client.GetStringAsync("http://csharpindepth.com");
+            Task<string> task = client.GetStringAsync("http://csharpindepth.com");
+            string text = await task;
             label.Text = text.Length.ToString();
         }
     }
